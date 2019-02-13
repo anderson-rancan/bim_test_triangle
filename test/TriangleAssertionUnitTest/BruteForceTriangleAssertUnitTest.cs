@@ -6,8 +6,22 @@ using TriangleAssertion;
 namespace TriangleAssertionUnitTest
 {
     [TestClass]
-    public class BruteForceTriangleAssertTest
+    public class BruteForceTriangleAssertUnitTest
     {
+        [DataTestMethod]
+        [DynamicData(nameof(TriangleAssertTestData.GetPitagorasRightTriangleData), typeof(TriangleAssertTestData), DynamicDataSourceType.Method)]
+        public void PitagorasRightTriangle_ShouldBeAcceptable(int[] arrayOfNumbers)
+        {
+            // ARRANGE
+            ITriangleAssert triangleAssert = new BruteForceTriangleAssert();
+
+            // ACT
+            var result = triangleAssert.HasTriangleInside(arrayOfNumbers, 3);
+
+            // ASSERT
+            result.Should().Be(1);
+        }
+
         [DataTestMethod]
         [DynamicData(nameof(TriangleAssertTestData.GetProposedExerciseData), typeof(TriangleAssertTestData), DynamicDataSourceType.Method)]
         public void ProposedExercise_ProducesExpectedResult(int[] arrayOfNumbers, int quantity, int expectedResult)
