@@ -8,16 +8,15 @@ namespace TriangleAssertionUnitTest
     [TestClass]
     public class BruteForceTriangleAssertTest
     {
-        [TestMethod]
-        [DataRow(new[] { 10, 2, 5, 1, 8, 20 }, 5, 1)]
-        [DataRow(new[] { 10, 50, 5, 1 }, 4, 1)]
+        [DataTestMethod]
+        [DynamicData(nameof(TriangleAssertTestData.GetProposedExerciseData), typeof(TriangleAssertTestData), DynamicDataSourceType.Method)]
         public void ProposedExercise_ProducesExpectedResult(int[] arrayOfNumbers, int quantity, int expectedResult)
         {
             // ARRANGE
-            ITriangleAssert _triangleAssert = new BruteForceTriangleAssert();
+            ITriangleAssert triangleAssert = new BruteForceTriangleAssert();
 
             // ACT
-            var result = _triangleAssert.HasTriangleInside(arrayOfNumbers, quantity);
+            var result = triangleAssert.HasTriangleInside(arrayOfNumbers, quantity);
 
             // ASSERT
             result.Should().Be(expectedResult);
