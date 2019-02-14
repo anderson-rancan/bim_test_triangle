@@ -10,6 +10,19 @@ namespace TriangleAssertionUnitTest
         protected ITriangleAssert TriangleAssert { get; set; }
 
         [DataTestMethod]
+        [DynamicData(nameof(TriangleAssertUnitTestBase.GetBasicData), DynamicDataSourceType.Method)]
+        public void BasicEnumeration_ProducesExpectedResult(int[] arrayOfNumbers, int quantity, int expectedResult)
+        {
+            // ARRANGE
+
+            // ACT
+            var result = TriangleAssert.HasTriangleInside(arrayOfNumbers, quantity);
+
+            // ASSERT
+            result.Should().Be(expectedResult);
+        }
+
+        [DataTestMethod]
         [DynamicData(nameof(TriangleAssertUnitTestBase.GetPitagorasRightTriangleData), DynamicDataSourceType.Method)]
         public void PitagorasRightTriangle_ShouldBeAcceptable(int[] arrayOfNumbers)
         {
@@ -47,6 +60,12 @@ namespace TriangleAssertionUnitTest
             // ASSERT
             TriangleAssert.Invoking(_ => result = _.HasTriangleInside(arrayOfNumbers, quantity)).Should().NotThrow();
             result.Should().Be(expectedResult);
+        }
+
+        private static IEnumerable<object[]> GetBasicData()
+        {
+            // arrayOfObjects { arrayOfElements, elementsQuantity, expectedResult }
+            yield return new object[] { new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, 10, 1 };
         }
 
         private static IEnumerable<object[]> GetPitagorasRightTriangleData()
