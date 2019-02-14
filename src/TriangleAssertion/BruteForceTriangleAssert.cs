@@ -15,7 +15,7 @@ namespace TriangleAssertion
             var triangles = combinations
                 .Where(combination => IsValidTriangle(arrayOfNumbers[combination[0]], arrayOfNumbers[combination[1]], arrayOfNumbers[combination[2]]));
 
-            return triangles.Count() > 0
+            return triangles.Any()
                 ? 1
                 : 0;
         }

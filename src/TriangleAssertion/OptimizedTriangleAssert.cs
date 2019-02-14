@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace TriangleAssertion
 {
-    // still O(n^3)
     public class OptimizedTriangleAssert : TriangleAssertBase
     {
         public override int HasTriangleInside(int[] arrayOfNumbers, int quantity)
@@ -10,6 +10,7 @@ namespace TriangleAssertion
             var group = 3;
             if (quantity < group) return 0;
 
+            Array.Sort(arrayOfNumbers);
             var combination = new int[group];
             var stack = new Stack<int>(group);
             stack.Push(0);
@@ -32,6 +33,11 @@ namespace TriangleAssertion
                     if (IsValidTriangle(arrayOfNumbers[combination[0]], arrayOfNumbers[combination[1]], arrayOfNumbers[combination[2]]))
                     {
                         return 1;
+                    }
+                    else if (combination[2] < quantity - 1 && arrayOfNumbers[combination[2]] >= arrayOfNumbers[combination[0]] + arrayOfNumbers[combination[1]])
+                    {
+                        stack.Pop();
+                        stack.Push(quantity);
                     }
 
                     break;
