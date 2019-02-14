@@ -58,8 +58,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BruteForceTriangleAssertUnitTest.cs" />
+    <Compile Include="OptimizedTriangleAssertUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TriangleAssertTestData.cs" />
+    <Compile Include="TriangleAssertUnitTestBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\TriangleAssertion\TriangleAssertion.csproj">

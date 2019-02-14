@@ -4,12 +4,12 @@ using TriangleAssertion;
 namespace TriangleAssertionUnitTest
 {
     [TestClass]
-    public class BruteForceTriangleAssertUnitTest : TriangleAssertUnitTestBase
+    public class OptimizedTriangleAssertUnitTest : TriangleAssertUnitTestBase
     {
         [TestInitialize]
         public void TestInitialize()
         {
-            TriangleAssert = new BruteForceTriangleAssert();
+            TriangleAssert = new OptimizedTriangleAssert();
         }
     }
 }

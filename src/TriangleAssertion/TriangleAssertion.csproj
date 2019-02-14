@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="BruteForceTriangleAssert.cs" />
     <Compile Include="ITriangleAssert.cs" />
+    <Compile Include="OptimizedTriangleAssert.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TriangleAssertBase.cs" />

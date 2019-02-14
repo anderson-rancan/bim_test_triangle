@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TriangleAssertion
 {
+    // probably O(n^3), will use just to test
     public class BruteForceTriangleAssert : TriangleAssertBase
     {
         public override int HasTriangleInside(int[] arrayOfNumbers, int quantity)
@@ -17,7 +18,9 @@ namespace TriangleAssertion
             var triangles = combinations
                 .Where(combination => IsValidTriangle(arrayOfNumbers[combination[0]], arrayOfNumbers[combination[1]], arrayOfNumbers[combination[2]]));
 
-            return triangles.Count();
+            return triangles.Count() > 0
+                ? 1
+                : 0;
         }
 
         private IEnumerable<int[]> LinearCombination(int quantity)

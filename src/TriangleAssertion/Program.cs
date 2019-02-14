@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TriangleAssertion
 {
@@ -32,9 +29,8 @@ namespace TriangleAssertion
             Console.WriteLine($"Starting { nameof(BruteForceTriangleAssert) }");
             SearchForTriangles(arrayOfNumbers, numberOfElements, new BruteForceTriangleAssert());
 
-            // TODO run an optimized method!
-            // Console.WriteLine($"Starting { nameof(PrettyGoodTriangleAssert) }");
-            // SearchForTriangles(arrayOfNumbers, numberOfElements, new PrettyGoodTriangleAssert());
+            Console.WriteLine($"Starting { nameof(OptimizedTriangleAssert) }");
+            SearchForTriangles(arrayOfNumbers, numberOfElements, new OptimizedTriangleAssert());
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
@@ -43,16 +39,11 @@ namespace TriangleAssertion
         static void SearchForTriangles(int[] arrayOfNumbers, int quantity, ITriangleAssert triangleAssert)
         {
             var stopwatch = Stopwatch.StartNew();
-
             var result = triangleAssert.HasTriangleInside(arrayOfNumbers, quantity);
-
-
-
-
-
             stopwatch.Stop();
+
             Console.WriteLine($"Result: { result }");
-            Console.WriteLine($"Elapsed milliseconds: { stopwatch.ElapsedMilliseconds }");
+            Console.WriteLine($"Elapsed milliseconds: { stopwatch.ElapsedMilliseconds } ({stopwatch.ElapsedTicks} ticks)");
             Console.WriteLine();
         }
     }
